@@ -19,6 +19,7 @@
  *  @return Instance of DVSFacebookAuthenticator.
  */
 - (instancetype)initWithAppID:(NSString *)appID NS_DESIGNATED_INITIALIZER;
+- (instancetype)init NS_UNAVAILABLE;
 
 /**
  *  Authenticate user with app ID given in init method.
