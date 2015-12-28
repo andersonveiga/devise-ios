@@ -19,14 +19,14 @@ Pod::Spec.new do |spec|
                          'Paweł Białecki' => 'pawel.bialecki@netguru.pl'}
 
   spec.version       = '1.1.1'
-  spec.source        = { :git => 'https://github.com/netguru/devise-ios.git', :tag => spec.version.to_s }
-  spec.platform      = :ios, '7.0'
+  spec.source        = { :git => 'https://github.com/andersonveiga/devise-ios.git', :tag => spec.version.to_s }
+  spec.platform      = :ios, '8.0'
 
   spec.source_files  = 'Devise/**/*.{h,m}'
   spec.requires_arc  = true
 
   spec.dependency      'UICKeyChainStore', '~> 1.1'
-  spec.dependency      'ngrvalidator', '~> 1.2.0'
+  spec.dependency      'ngrvalidator', '~> 1.3.0'
   spec.dependency      'XLForm', '~> 2.1'
 
   spec.frameworks     = 'AddressBook', 'AssetsLibrary', 'Foundation', 'CoreLocation', 'CoreMotion', 'CoreGraphics', 'CoreText', 'MediaPlayer', 'Security', 'SystemConfiguration', 'UIKit'
