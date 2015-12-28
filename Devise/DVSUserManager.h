@@ -59,6 +59,7 @@
  *  @return Instance of receiver.
  */
 - (instancetype)initWithUser:(DVSUser *)user configuration:(DVSConfiguration *)configuration NS_DESIGNATED_INITIALIZER;
+- (instancetype)init NS_UNAVAILABLE;
 
 /**
  *  Returns fresh copy of user model taken from keychain store. If model doesn't exist, returns nil.

@@ -50,6 +50,8 @@ typedef NS_ENUM(NSUInteger, DVSRetrieverAction) {
  *  @return Instance of DVSLoginSignUpViewController class
  */
 - (instancetype)initWithType:(DVSRetrieverType)type fields:(DVSAccountRetrieverFields)fields NS_DESIGNATED_INITIALIZER;
+- (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil NS_UNAVAILABLE;
+- (instancetype)initWithCoder:(NSCoder *)aDecoder NS_UNAVAILABLE;
 
 @end
 

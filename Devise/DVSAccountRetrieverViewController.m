@@ -31,7 +31,8 @@
 
 - (instancetype)initWithType:(DVSRetrieverType)type fields:(DVSAccountRetrieverFields)fields {
     
-    if (self = [super init]) {
+    if (self = [super initWithNibName:nil
+                               bundle:nil]) {
         [self setupWithFieldsOptions:fields forType:type];
     }
     return self;

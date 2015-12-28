@@ -21,6 +21,7 @@ typedef void(^DVSAccountStoreBlock)(ACAccount *account, NSError *error);
  *  @return Instance of ACAccountStore.
  */
 - (instancetype)initWithAppID:(NSString *)appID permissions:(NSArray *)permissions NS_DESIGNATED_INITIALIZER;
+- (instancetype)init NS_UNAVAILABLE;
 
 /**
  * Request access to facebook account configured on the device

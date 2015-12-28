@@ -25,6 +25,7 @@
  *  @param configuration The configuration used to initialize DVSUserPersistenceStore.
  */
 - (instancetype)initWithConfiguration:(DVSConfiguration *)configuration NS_DESIGNATED_INITIALIZER;
+- (instancetype)init NS_UNAVAILABLE;
 
 /**
  *  Returns fresh copy of user model taken from keychain store. If model doesn't exist, returns nil.
