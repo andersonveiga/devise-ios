@@ -47,10 +47,12 @@
 
 - (void)makeRequestWithAccount:(ACAccount *)account success:(DVSDictionaryBlock)success failure:(DVSErrorBlock)failure {
     
+    NSDictionary *params = @{@"fields":@"email,first_name,last_name"};
+    
     SLRequest *request = [SLRequest requestForServiceType:SLServiceTypeFacebook
                                             requestMethod:SLRequestMethodGET
                                                       URL:[NSURL URLWithString:@"https://graph.facebook.com/me"]
-                                               parameters:nil];
+                                               parameters:params];
     request.account = account;
     
     [request performRequestWithHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
@@ -86,7 +88,9 @@
     return [DVSOAuthJSONParameters dictionaryForParametersWithProvider:DVSOAuthProviderFacebook
                                                             oAuthToken:token
                                                                 userID:userData[@"id"]
-                                                             userEmail:userData[@"email"]];
+                                                             userEmail:userData[@"email"]
+                                                         userFirstName:userData[@"first_name"]
+                                                          userLastName:userData[@"last_name"]];
 }
 
 - (BOOL)isResponseValid:(NSURLResponse *)response {

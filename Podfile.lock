@@ -6,7 +6,7 @@ PODS:
     - Kiwi (~> 2.0)
   - KIF/XCTest (3.2.3)
   - Kiwi (2.3.1)
-  - ngrvalidator (1.2.0)
+  - ngrvalidator (1.3.0)
   - OCHamcrest (4.1.1)
   - OCMockito (1.4.0):
     - OCHamcrest (~> 4.0)
@@ -19,7 +19,7 @@ PODS:
 DEPENDENCIES:
   - KIF-Kiwi (~> 0.2.4)
   - Kiwi (~> 2.3)
-  - ngrvalidator (~> 1.2.0)
+  - ngrvalidator (~> 1.3.0)
   - OCMockito (~> 1.4.0)
   - OHHTTPStubs (~> 3.1)
   - UICKeyChainStore (~> 1.1)
@@ -29,11 +29,11 @@ SPEC CHECKSUMS:
   KIF: a94bffe9c97e449e44f8fa481c53243d21309e1e
   KIF-Kiwi: fd9f800ca56db7cd98059fbd997158e76012bcaf
   Kiwi: f038a6c61f7a9e4d7766bff5717aa3b3fdb75f55
-  ngrvalidator: 159a97ff2524a22c02e74f1280fe788a57742fd4
+  ngrvalidator: 81549dfcc836ef4744fbda43ed0d3a6480fc31e3
   OCHamcrest: 6f03ffa81d12feab872638490a44ab0a6d3aca10
   OCMockito: 4981140c9a9ec06c31af40f636e3c0f25f27e6b2
   OHHTTPStubs: 5624a5d20d97d46d47e15a68ca8808b59ccf0512
   UICKeyChainStore: 891bcd2fe687c92db8e648cba035c4e662ffa43e
   XLForm: ba9e657a360a810ab1f64cc2cd6307fd99a86866
 
-COCOAPODS: 0.37.2
+COCOAPODS: 0.39.0

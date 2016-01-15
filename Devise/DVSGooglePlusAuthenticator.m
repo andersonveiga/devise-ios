@@ -78,7 +78,7 @@
         if (error) {
             if (self.failure != NULL) self.failure(error);
         } else {
-            NSDictionary *parameters = [DVSOAuthJSONParameters dictionaryForParametersWithProvider:DVSOAuthProviderGoogle oAuthToken:auth.accessToken userID:person.identifier userEmail:[GPPSignIn sharedInstance].authentication.userEmail];
+            NSDictionary *parameters = [DVSOAuthJSONParameters dictionaryForParametersWithProvider:DVSOAuthProviderGoogle oAuthToken:auth.accessToken userID:person.identifier userEmail:[GPPSignIn sharedInstance].authentication.userEmail userFirstName:nil userLastName:nil];
             if (self.success != NULL) self.success(parameters);
         }
     }];

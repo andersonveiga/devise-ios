@@ -10,7 +10,7 @@
 
 @implementation DVSOAuthJSONParameters
 
-+ (NSDictionary *)dictionaryForParametersWithProvider:(DVSOAuthProvider)provider oAuthToken:(NSString *)oAuthToken userID:(NSString *)userID userEmail:(NSString *)email {
++ (NSDictionary *)dictionaryForParametersWithProvider:(DVSOAuthProvider)provider oAuthToken:(NSString *)oAuthToken userID:(NSString *)userID userEmail:(NSString *)email userFirstName:(NSString *)firstName userLastName:(NSString *)lastName {
     
     NSAssert(oAuthToken != nil, @"Token can not be nil!");
     NSAssert(userID != nil, @"User ID can not be nil!");
@@ -34,7 +34,9 @@
          @"provider" : providerName,
          @"oauth_token" : oAuthToken,
          @"uid" : userID,
-         @"email" : email
+         @"email" : email,
+         @"first_name": firstName,
+         @"last_name": lastName
     };
     
     return @{@"user" : parameters};
