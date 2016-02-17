@@ -119,10 +119,6 @@
 		5EBF30841ABC3430001941CA /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E64C17B1A30872B00A41A88 /* Security.framework */; };
 		5EBF30851ABC3435001941CA /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AD4C7151A24FA2F00F0AE67 /* UIKit.framework */; };
 		5EBF30861ABC3447001941CA /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5EBF305E1ABC2DE8001941CA /* AssetsLibrary.framework */; };
-		5EBF30891ABC39CA001941CA /* GoogleOpenSource.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5EBF30871ABC39CA001941CA /* GoogleOpenSource.framework */; };
-		5EBF308A1ABC39CA001941CA /* GoogleOpenSource.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5EBF30871ABC39CA001941CA /* GoogleOpenSource.framework */; };
-		5EBF308B1ABC39CA001941CA /* GooglePlus.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5EBF30881ABC39CA001941CA /* GooglePlus.framework */; };
-		5EBF308C1ABC39CA001941CA /* GooglePlus.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5EBF30881ABC39CA001941CA /* GooglePlus.framework */; };
 		5EE295081A35C086009441E1 /* NSDictionary+Devise+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 5EE295061A35C086009441E1 /* NSDictionary+Devise+Private.h */; };
 		5EE295091A35C086009441E1 /* NSDictionary+Devise+Private.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EE295071A35C086009441E1 /* NSDictionary+Devise+Private.m */; };
 		5EF381D41A2756BB006875D4 /* NSURL+Devise+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 5EF381D21A2756BB006875D4 /* NSURL+Devise+Private.h */; };
@@ -341,8 +337,6 @@
 		5EBF30661ABC2E38001941CA /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
 		5EBF30681ABC2E46001941CA /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		5EBF306B1ABC2E53001941CA /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
-		5EBF30871ABC39CA001941CA /* GoogleOpenSource.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleOpenSource.framework; path = Frameworks/GoogleOpenSource.framework; sourceTree = "<group>"; };
-		5EBF30881ABC39CA001941CA /* GooglePlus.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GooglePlus.framework; path = Frameworks/GooglePlus.framework; sourceTree = "<group>"; };
 		5EE295061A35C086009441E1 /* NSDictionary+Devise+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+Devise+Private.h"; sourceTree = "<group>"; };
 		5EE295071A35C086009441E1 /* NSDictionary+Devise+Private.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+Devise+Private.m"; sourceTree = "<group>"; };
 		5EF381D21A2756BB006875D4 /* NSURL+Devise+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSURL+Devise+Private.h"; sourceTree = "<group>"; };
@@ -391,8 +385,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5EBF30891ABC39CA001941CA /* GoogleOpenSource.framework in Frameworks */,
-				5EBF308B1ABC39CA001941CA /* GooglePlus.framework in Frameworks */,
 				5EBF306D1ABC2E57001941CA /* UIKit.framework in Frameworks */,
 				5EBF306C1ABC2E53001941CA /* SystemConfiguration.framework in Frameworks */,
 				5EBF306A1ABC2E4B001941CA /* Security.framework in Frameworks */,
@@ -415,14 +407,12 @@
 			files = (
 				5EBF30861ABC3447001941CA /* AssetsLibrary.framework in Frameworks */,
 				5EBF30851ABC3435001941CA /* UIKit.framework in Frameworks */,
-				5EBF308A1ABC39CA001941CA /* GoogleOpenSource.framework in Frameworks */,
 				5EBF30841ABC3430001941CA /* Security.framework in Frameworks */,
 				5EBF30831ABC342A001941CA /* AddressBook.framework in Frameworks */,
 				5EBF30821ABC3424001941CA /* CoreLocation.framework in Frameworks */,
 				5EBF30811ABC3412001941CA /* CoreMotion.framework in Frameworks */,
 				5EBF30801ABC340E001941CA /* CoreGraphics.framework in Frameworks */,
 				5EBF307F1ABC3408001941CA /* CoreText.framework in Frameworks */,
-				5EBF308C1ABC39CA001941CA /* GooglePlus.framework in Frameworks */,
 				5EBF307E1ABC33FE001941CA /* MediaPlayer.framework in Frameworks */,
 				5EBF307D1ABC33F8001941CA /* SystemConfiguration.framework in Frameworks */,
 				3AA8B36A1A24DA0000166927 /* Devise.framework in Frameworks */,
@@ -984,8 +974,6 @@
 		E318EA28A05EB87D9168576A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				5EBF30871ABC39CA001941CA /* GoogleOpenSource.framework */,
-				5EBF30881ABC39CA001941CA /* GooglePlus.framework */,
 				5EBF306B1ABC2E53001941CA /* SystemConfiguration.framework */,
 				5EBF30681ABC2E46001941CA /* MediaPlayer.framework */,
 				5EBF30661ABC2E38001941CA /* CoreText.framework */,

@@ -63,7 +63,8 @@
     NSString *keychainService = self.configuration.keychainServiceName;
     NSString *keychainKey = self.configuration.resourceName;
     NSData *archivedData = [UICKeyChainStore dataForKey:keychainKey service:keychainService];
-    return [NSKeyedUnarchiver unarchiveObjectWithData:archivedData];
+    
+    return archivedData ? [NSKeyedUnarchiver unarchiveObjectWithData:archivedData]:nil;
 }
 
 @end

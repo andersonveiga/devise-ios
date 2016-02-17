@@ -15,6 +15,7 @@ inhibit_all_warnings!
 pod 'UICKeyChainStore', '~> 1.1'
 pod 'XLForm', '~> 2.1'
 pod 'ngrvalidator', '~> 1.3.0'
+pod 'Google/SignIn'
 
 # Exclusive demo dependencies
 target 'Demo' do

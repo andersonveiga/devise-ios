@@ -94,7 +94,7 @@
     
     [self validateUsingRules:rules forAction:DVSActionRegistration success:^{
         [self.httpClient registerUser:self.user success:^(DVSUser *user) {
-            self.persistenceStore.localUser = user;
+//            self.persistenceStore.localUser = user;
             if (success != NULL) success();
         } failure:failure];
     } failure:failure];
