@@ -19,7 +19,7 @@
  *  The model of user class associated with DVSUserManager.
  *  DefaultManager uses user model from keychain store.
  */
-@property (strong, nonatomic, readonly) DVSUser *user;
+@property (strong, nonatomic) DVSUser *user;
 
 /**
  *  JSON serializer used in forming request.
@@ -111,12 +111,13 @@
 /**
  *  Handles authorization via GooglePlus callback.
  */
-- (BOOL)handleURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation;
-
+- (BOOL)handleURL:(NSURL *)url application:(UIApplication *)application sourceApplication:(NSString *)sourceApplication annotation:(id)annotation;
 /**
  *  Deletes locally stored user.
  */
 - (void)logout;
+
+- (void)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions;
 
 @end
 

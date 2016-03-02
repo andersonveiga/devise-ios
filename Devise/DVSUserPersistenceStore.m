@@ -47,6 +47,7 @@
 #pragma mark - Persistent helpers
 
 - (void)savePersistentUser:(DVSUser *)user {
+    
     NSString *keychainService = self.configuration.keychainServiceName;
     NSString *keychainKey = self.configuration.resourceName;
     NSData *archivedData = [NSKeyedArchiver archivedDataWithRootObject:user];
@@ -60,11 +61,13 @@
 }
 
 - (DVSUser *)persistentUser {
+    
     NSString *keychainService = self.configuration.keychainServiceName;
     NSString *keychainKey = self.configuration.resourceName;
+    
     NSData *archivedData = [UICKeyChainStore dataForKey:keychainKey service:keychainService];
     
-    return archivedData ? [NSKeyedUnarchiver unarchiveObjectWithData:archivedData]:nil;
+    return archivedData ? [NSKeyedUnarchiver unarchiveObjectWithData:archivedData]:NULL;
 }
 
 @end

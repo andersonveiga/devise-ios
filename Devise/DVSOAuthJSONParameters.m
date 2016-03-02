@@ -36,7 +36,8 @@
          @"uid" : userID,
          @"email" : email,
          @"first_name": firstName,
-         @"last_name": lastName
+         @"last_name": lastName,
+         @"mobile": @""
     };
     
     return @{@"user" : parameters};

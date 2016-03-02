@@ -128,6 +128,7 @@ NSString * const DVSHTTPClientDefaultGoogleSigningPath = @"auth/google";
         if (error != nil) {
             if (failure != NULL) failure(error);
         } else {
+            
             if ([self.userSerializer.JSONKeyPathForRemoteRoot length] > 0) {
                 [self fillUser:user withJSONRepresentation:responseObject[self.userSerializer.JSONKeyPathForRemoteRoot]];
             } else {

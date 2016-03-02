@@ -22,7 +22,10 @@
  *  @param success Block invoked when authentication succeed. Provides formatted parameter dictionary according to devise-ios convention.
  *  @param failure Block invoked when authentication failed. Reurns error.
  */
-- (void)authenticateWithClientID:(NSString *)clientID success:(DVSDictionaryBlock)success failure:(DVSErrorBlock)failure;
+- (void)authenticateWithSuccess:(DVSDictionaryBlock)success failure:(DVSErrorBlock)failure;
+
+//- (void)signoutWithSuccess:(DVSDictionaryBlock)success failure:(DVSErrorBlock)failure;
+- (void)signOut;
 
 /**
  *  Passes arguments to GPPSignIn handleURL:sourceApplication:annotation: method

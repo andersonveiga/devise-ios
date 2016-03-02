@@ -16,9 +16,10 @@
 
 @interface DVSUserManager () <DVSHTTPClientDelegate>
 
-@property (strong, nonatomic, readwrite) DVSUser *user;
+//@property (strong, nonatomic, readwrite) DVSUser *user;
 @property (strong, nonatomic) DVSUserPersistenceStore *persistenceStore;
 @property (strong, nonatomic) DVSGooglePlusAuthenticator *googlePlusAuthenticator;
+@property (strong, nonatomic) DVSFacebookAuthenticator *facebookAuthenticator;
 
 @end
 
@@ -70,6 +71,7 @@
     
     [self validateUsingRules:rules forAction:DVSActionLogin success:^{
         [self.httpClient logInUser:self.user success:^(DVSUser *user) {
+            
             self.persistenceStore.localUser = user;
             if (success != NULL) success();
         } failure:failure];
@@ -94,7 +96,6 @@
     
     [self validateUsingRules:rules forAction:DVSActionRegistration success:^{
         [self.httpClient registerUser:self.user success:^(DVSUser *user) {
-//            self.persistenceStore.localUser = user;
             if (success != NULL) success();
         } failure:failure];
     } failure:failure];
@@ -104,10 +105,7 @@
 
 - (void)signInUsingFacebookWithSuccess:(DVSVoidBlock)success failure:(DVSErrorBlock)failure {
     
-    NSString *appID = self.httpClient.configuration.facebookAppID;
-    DVSFacebookAuthenticator *facebookAuthenticator = [[DVSFacebookAuthenticator alloc] initWithAppID:appID];
-    
-    [facebookAuthenticator authenticateWithSuccess:^(NSDictionary *dictionary) {
+    [self.facebookAuthenticator authenticateWithSuccess:^(NSDictionary *dictionary) {
         [self.httpClient signInUsingFacebookUser:self.user parameters:dictionary success:^(DVSUser *user) {
             self.persistenceStore.localUser = user;
             if (success != NULL) success();
@@ -115,13 +113,11 @@
     } failure:failure];
 }
 
-#pragma mark - Signing via Google+
+#pragma mark - Signing via Google
 
 - (void)signInUsingGoogleWithSuccess:(DVSVoidBlock)success failure:(DVSErrorBlock)failure {
     
-    NSString *clientID = self.httpClient.configuration.googleClientID;
-    
-    [self.googlePlusAuthenticator authenticateWithClientID:clientID success:^(NSDictionary *dictionary) {
+    [self.googlePlusAuthenticator authenticateWithSuccess:^(NSDictionary *dictionary) {
         [self.httpClient signInUsingGoogleUser:self.user parameters:dictionary success:^(DVSUser *user) {
             self.persistenceStore.localUser = user;
             if (success != NULL) success();
@@ -154,9 +150,10 @@
 }
 
 #pragma mark - Handle callback
-
-- (BOOL)handleURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
-    return [self.googlePlusAuthenticator handleURL:url sourceApplication:sourceApplication annotation:annotation];
+- (BOOL)handleURL:(NSURL *)url application:(UIApplication *)application sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
+    BOOL googleHandled = [self.googlePlusAuthenticator handleURL:url sourceApplication:sourceApplication annotation:annotation];
+    BOOL fbHandled = [self.facebookAuthenticator handleURL:url application:application sourceApplication:sourceApplication annotation:annotation];
+    return (googleHandled || fbHandled);
 }
 
 #pragma mark - Delete account
@@ -171,7 +168,12 @@
 #pragma mark - Logout method
 
 - (void)logout {
+    [self.facebookAuthenticator logOut];
+    [self.googlePlusAuthenticator signOut];
     self.persistenceStore.localUser = nil;
+}
+- (void)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions{
+    [self.facebookAuthenticator application:application didFinishLaunchingWithOptions:launchOptions];
 }
 
 #pragma mark - Validation
@@ -221,6 +223,11 @@
 - (DVSGooglePlusAuthenticator *)googlePlusAuthenticator {
     if (_googlePlusAuthenticator) return _googlePlusAuthenticator;
     return (_googlePlusAuthenticator = [[DVSGooglePlusAuthenticator alloc] init]);
+}
+
+- (DVSFacebookAuthenticator *)facebookAuthenticator {
+    if(_facebookAuthenticator) return _facebookAuthenticator;
+    return (_facebookAuthenticator = [[DVSFacebookAuthenticator alloc] init]);
 }
 
 @end
