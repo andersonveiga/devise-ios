@@ -35,6 +35,8 @@
     if ([FBSDKAccessToken currentAccessToken]) {
         [weakSelf requestData:success failure:failure];
     } else {
+        [FBSDKAccessToken setCurrentAccessToken:nil];
+        [FBSDKProfile setCurrentProfile:nil];
         [self.loginManager logInWithReadPermissions: @[@"public_profile"]
                      fromViewController:nil handler:^(FBSDKLoginManagerLoginResult *result, NSError *error) {
                          if (error) {

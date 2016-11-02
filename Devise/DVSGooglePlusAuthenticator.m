@@ -9,10 +9,10 @@
 #import "DVSGooglePlusAuthenticator.h"
 #import "DVSOAuthJSONParameters.h"
 
-#import <GooglePlus/GooglePlus.h>
-#import <GoogleOpenSource/GoogleOpenSource.h>
 
-@interface DVSGooglePlusAuthenticator () <GPPSignInDelegate>
+#import <Google/SignIn.h>
+
+@interface DVSGooglePlusAuthenticator () <GIDSignInDelegate>
 
 @property (copy, nonatomic) DVSErrorBlock failure;
 @property (copy, nonatomic) DVSDictionaryBlock success;
@@ -24,78 +24,92 @@
 - (instancetype)init{
     self = [super init];
     if (self) {
-        GPPSignIn *signIn = [GPPSignIn sharedInstance];
-        signIn.scopes = @[ kGTLAuthScopePlusLogin, kGTLAuthScopePlusUserinfoProfile, kGTLAuthScopePlusUserinfoEmail, kGTLAuthScopePlusMe ];
-        signIn.attemptSSO = YES;
-        signIn.shouldFetchGoogleUserID = YES;
-        signIn.shouldFetchGooglePlusUser = YES;
-        signIn.shouldFetchGoogleUserEmail = YES;
+
+        NSError* configureError;
+        [[GGLContext sharedInstance] configureWithError: &configureError];
+        NSAssert(!configureError, @"Error configuring Google services: %@", configureError);
+        
+        GIDSignIn *signIn = [GIDSignIn sharedInstance];
+        signIn.shouldFetchBasicProfile = YES;
+
     }
     return self;
 }
 
 - (void)dealloc {
-    [GPPSignIn sharedInstance].delegate = nil;
+    [GIDSignIn sharedInstance].delegate = nil;
 }
 
 #pragma mark - Public methods
 
-- (void)authenticateWithClientID:(NSString *)clientID success:(DVSDictionaryBlock)success failure:(DVSErrorBlock)failure {
-    
-    [GPPSignIn sharedInstance].clientID = clientID;
-    
+- (void)authenticateWithSuccess:(DVSDictionaryBlock)success failure:(DVSErrorBlock)failure {
     self.success = success;
     self.failure = failure;
     [self authenticate];
 }
 
 - (BOOL)handleURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation  {
-    return [[GPPSignIn sharedInstance] handleURL:url sourceApplication:sourceApplication annotation:annotation];
+    
+//    NSDictionary *options = @{UIApplicationOpenURLOptionsSourceApplicationKey: sourceApplication,
+//                              UIApplicationOpenURLOptionsAnnotationKey: annotation};
+    
+    return [[GIDSignIn sharedInstance] handleURL:url
+                               sourceApplication:sourceApplication
+                                      annotation:annotation];
 }
+
+- (void)signOut{
+    [GIDSignIn sharedInstance].delegate = self;
+    [[GIDSignIn sharedInstance] signOut];
+}
+
+//- (BOOL)application:(UIApplication *)app
+//            openURL:(NSURL *)url
+//            options:(NSDictionary *)options {
+//    return [[GIDSignIn sharedInstance] handleURL:url
+//                               sourceApplication:options[UIApplicationOpenURLOptionsSourceApplicationKey]
+//                                      annotation:options[UIApplicationOpenURLOptionsAnnotationKey]];
+//}
+//
+//- (BOOL)application:(UIApplication *)application
+//            openURL:(NSURL *)url
+//  sourceApplication:(NSString *)sourceApplication
+//         annotation:(id)annotation {
+//    NSDictionary *options = @{UIApplicationOpenURLOptionsSourceApplicationKey: sourceApplication,
+//                              UIApplicationOpenURLOptionsAnnotationKey: annotation};
+//    return [self application:application
+//                     openURL:url
+//                     options:options];
+//}
 
 #pragma mark - Google+ SDK helpers
 
-- (GTLServicePlus *)googlePlusServiceWithAuthorizer:(id <GTMFetcherAuthorizationProtocol>)authorizer {
-    GTLServicePlus *service = [[GTLServicePlus alloc] init];
-    [service setAuthorizer:authorizer];
-    service.retryEnabled = YES;
-    service.apiVersion = @"v1";
-    return service;
-}
-
 - (void)authenticate {
-    [GPPSignIn sharedInstance].delegate = self;
-    if (![[GPPSignIn sharedInstance] trySilentAuthentication]) {
-        [[GPPSignIn sharedInstance] authenticate];
-    }
+    [GIDSignIn sharedInstance].delegate = self;
+    [[GIDSignIn sharedInstance] signIn];
 }
 
-- (void)continueAuthenticationWithAuth:(GTMOAuth2Authentication *)auth {
-    
-    GTLServicePlus *plusService = [self googlePlusServiceWithAuthorizer:auth];
-    GTLQueryPlus *query = [GTLQueryPlus queryForPeopleGetWithUserId:@"me"];
-    [plusService executeQuery:query completionHandler:^(GTLServiceTicket *ticket, GTLPlusPerson *person, NSError *error) {
-        if (error) {
-            if (self.failure != NULL) self.failure(error);
-        } else {
-            NSDictionary *parameters = [DVSOAuthJSONParameters dictionaryForParametersWithProvider:DVSOAuthProviderGoogle oAuthToken:auth.accessToken userID:person.identifier userEmail:[GPPSignIn sharedInstance].authentication.userEmail userFirstName:nil userLastName:nil];
-            if (self.success != NULL) self.success(parameters);
-        }
-    }];
-}
 
-#pragma mark - GPPSignInDelegate
+#pragma mark - GIDSignInDelegate
 
-- (void)finishedWithAuth:(GTMOAuth2Authentication *)auth error:(NSError *)error {
+- (void)signIn:(GIDSignIn *)signIn
+didSignInForUser:(GIDGoogleUser *)user
+     withError:(NSError *)error {
+
     if (error) {
         if (self.failure != NULL) self.failure(error);
     } else {
-        [self continueAuthenticationWithAuth:auth];
+        NSDictionary *parameters = [DVSOAuthJSONParameters dictionaryForParametersWithProvider:DVSOAuthProviderGoogle oAuthToken:user.authentication.accessToken userID:user.userID userEmail:user.profile.email userFirstName:user.profile.name userLastName:@""];
+        
+        if (self.success != NULL) self.success(parameters);
     }
 }
 
-- (void)didDisconnectWithError:(NSError *)error {
+- (void)signIn:(GIDSignIn *)signIn
+didDisconnectWithUser:(GIDGoogleUser *)user
+     withError:(NSError *)error {
     if (self.failure != NULL) self.failure(error);
 }
+
 
 @end

@@ -27,10 +27,9 @@ Pod::Spec.new do |spec|
 
   spec.dependency      'UICKeyChainStore', '~> 1.1'
   spec.dependency      'ngrvalidator', '~> 1.3.0'
-  spec.dependency      'XLForm', '~> 2.1'
+  spec.dependency      'Google/SignIn', '~> 4.0.1'
 
   spec.frameworks     = 'AddressBook', 'AssetsLibrary', 'Foundation', 'CoreLocation', 'CoreMotion', 'CoreGraphics', 'CoreText', 'MediaPlayer', 'Security', 'SystemConfiguration', 'UIKit'
-  spec.vendored_frameworks = 'Frameworks/GoogleOpenSource.framework', 'Frameworks/GooglePlus.framework'
   spec.private_header_files = 'Devise/**/*Private.h'
 
 end

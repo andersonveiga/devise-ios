@@ -1,6 +1,6 @@
 //
 //  Devise.h
-//  
+//
 //  Copyright (c) 2014 Netguru Sp. z o.o. All rights reserved.
 //
 
@@ -16,7 +16,6 @@
     #import <Devise/DVSUser+Persistence.h>
     #import <Devise/DVSTypedefs.h>
     #import <Devise/DVSLoginSignUpFields.h>
-    #import <Devise/DVSAccountRetrieverViewController.h>
     #import <Devise/DVSAccessibilityLabels.h>
 
 #endif
