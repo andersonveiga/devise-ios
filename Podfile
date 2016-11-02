@@ -15,6 +15,8 @@ inhibit_all_warnings!
 pod 'UICKeyChainStore', '~> 1.1'
 pod 'ngrvalidator', '~> 1.3.0'
 pod 'Google/SignIn', '~> 4.0.1'
+pod 'FBSDKCoreKit', '~> 4.17.0'
+pod 'FBSDKLoginKit', '~> 4.17.0'
 
 
 # Exclusive demo dependencies

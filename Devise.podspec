@@ -27,9 +27,11 @@ Pod::Spec.new do |spec|
 
   spec.dependency      'UICKeyChainStore', '~> 1.1'
   spec.dependency      'ngrvalidator', '~> 1.3.0'
-  spec.dependency      'Google/SignIn', '~> 4.0.1'
+  spec.dependency      'FBSDKCoreKit', '~> 4.17.0'
+  spec.dependency      'FBSDKLoginKit', '~> 4.17.0'
 
   spec.frameworks     = 'AddressBook', 'AssetsLibrary', 'Foundation', 'CoreLocation', 'CoreMotion', 'CoreGraphics', 'CoreText', 'MediaPlayer', 'Security', 'SystemConfiguration', 'UIKit'
+  spec.ios.vendored_frameworks = 'Frameworks/GoogleSignIn.framework'
   spec.private_header_files = 'Devise/**/*Private.h'
 
 end
