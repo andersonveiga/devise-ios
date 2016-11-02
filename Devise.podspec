@@ -18,7 +18,7 @@ Pod::Spec.new do |spec|
                          'Radosław Szeja' => 'radoslaw.szeja@netguru.pl',
                          'Paweł Białecki' => 'pawel.bialecki@netguru.pl'}
 
-  spec.version       = '1.1.3'
+  spec.version       = '1.1.4'
   spec.source        = { :git => 'https://github.com/andersonveiga/devise-ios.git', :tag => spec.version.to_s }
   spec.platform      = :ios, '8.0'
 
@@ -31,7 +31,7 @@ Pod::Spec.new do |spec|
   spec.dependency      'FBSDKLoginKit', '~> 4.17.0'
 
   spec.frameworks     = 'AddressBook', 'AssetsLibrary', 'Foundation', 'CoreLocation', 'CoreMotion', 'CoreGraphics', 'CoreText', 'MediaPlayer', 'Security', 'SystemConfiguration', 'UIKit'
-  spec.ios.vendored_frameworks = 'Frameworks/GoogleSignIn.framework'
+  spec.vendored_frameworks = 'Frameworks/GoogleSignIn.framework'
   spec.private_header_files = 'Devise/**/*Private.h'
 
 end
